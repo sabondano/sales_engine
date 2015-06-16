@@ -23,12 +23,21 @@ class MerchantRepository
   end
 
   def find_by_name(name)
+    merchants.find do |merchant|
+      merchant.name == name
+    end
   end
 
   def find_by_created_at(created_at)
+    merchants.find do |merchant|
+      merchant.created_at == created_at
+    end
   end
 
   def find_by_updated_at(updated_at)
+    merchants.find do |merchant|
+      merchant.updated_at == updated_at
+    end
   end
 
 end

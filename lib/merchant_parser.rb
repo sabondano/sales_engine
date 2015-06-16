@@ -6,15 +6,16 @@ class MerchantParser
   attr_reader :file,
               :repository
 
-  def initialize(file_path)
+  def initialize(file_path, repository)
     @file = file_path
     @merchants = []
+    @repository = repository
   end
 
   def load_csv
     CSV.foreach(file, headers: true, header_converters: :symbol) do |row|
       merchant_data = {:id => row[:id], :name => row[:name], :created_at => row[:created_at], :updated_at => row[:updated_at]}
-      @merchants << merchant_data
+      @merchants << Merchant.new(merchant_data, repository)
     end
     @merchants
   end
