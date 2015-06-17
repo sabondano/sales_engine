@@ -8,7 +8,7 @@ class Item
     @name        = data[:name]
     @description = data[:description]
     @unit_price  = (BigDecimal.new(data[:unit_price])/100).to_f
-    @merchant_id = data[:merchant_id]
+    @merchant_id = data[:merchant_id].to_i
     @created_at  = DateTime.strptime(data[:created_at], '%Y-%m-%d %H:%M:%S %Z')
     @updated_at  = DateTime.strptime(data[:updated_at], '%Y-%m-%d %H:%M:%S %Z')
     @repository  = repository
