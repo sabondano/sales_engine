@@ -8,7 +8,7 @@ class InvoiceItemTest < Minitest::Test
 
     invoice_item = InvoiceItem.new(data, repository)
 
-    assert_equal "1", invoice_item.id
+    assert_equal 1, invoice_item.id
   end
 
   def test_invoice_item_has_a_quantity
@@ -17,7 +17,7 @@ class InvoiceItemTest < Minitest::Test
 
     invoice_item = InvoiceItem.new(data, repository)
 
-    assert_equal "5", invoice_item.quantity
+    assert_equal 5, invoice_item.quantity
   end
 
   def test_invoice_item_has_a_unit_price
