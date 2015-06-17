@@ -4,8 +4,12 @@ class InvoiceItemRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @invoice_items = data
+    @invoice_items = data.map { |attributes| InvoiceItem.new(attributes, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#{self.class} #{@invoice_items.size} rows"
   end
 
   def all

@@ -31,7 +31,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_it_holds_invoice_instance
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -43,7 +43,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_invoice_by_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -55,7 +55,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_by_customer_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -67,7 +67,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_by_merchant_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -79,7 +79,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_it_finds_by_status
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -91,7 +91,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_by_created_at
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -103,7 +103,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_by_updated_at
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -115,7 +115,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_all_invoice_by_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -129,7 +129,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_all_by_customer_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -143,7 +143,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_all_by_merchant_id
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -157,7 +157,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_it_finds_all_by_status
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -171,7 +171,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_all_by_created_at
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
@@ -185,7 +185,7 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_finds_all_by_updated_at
     sales_engine = "placeholder"
     customer_repository = "placeholder"
-    input_csv = fixture_path('invoices_fixture.csv')
+    input_csv = fixture_path('invoices.csv')
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
