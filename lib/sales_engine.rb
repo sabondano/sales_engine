@@ -26,7 +26,7 @@ class SalesEngine
   # end
 
   def startup
-    merchant_data = Parser.parse("#{@file_path}/merchants_fixture.csv")
+    merchant_data = Parser.parse("#{@file_path}/merchants.csv")
     @merchant_repository = MerchantRepository.new(merchant_data, self)
 
     # @customer_repository = CustomerRepository.new(@file_path, self)
