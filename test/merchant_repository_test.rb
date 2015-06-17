@@ -51,7 +51,7 @@ class MerchantRepositoryTest < Minitest::Test
     repo = MerchantRepository.new(data, sales_engine)
     expected = "Schroeder-Jerde"
 
-    output = repo.find_by_id("1")
+    output = repo.find_by_id(1)
 
     assert_equal expected, output.name
   end
@@ -104,8 +104,8 @@ class MerchantRepositoryTest < Minitest::Test
     expected_1 = "Schroeder-Jerde"
     expected_2 = []
 
-    output_1 = repo.find_all_by_id("1")
-    output_2 = repo.find_all_by_id("11")
+    output_1 = repo.find_all_by_id(1)
+    output_2 = repo.find_all_by_id(11)
 
     assert_equal expected_1, output_1[0].name
     assert_equal expected_2, output_2
@@ -117,7 +117,7 @@ class MerchantRepositoryTest < Minitest::Test
     input_csv = fixture_path('merchants_fixture.csv')
     data = MerchantParser.new(input_csv, merchant_repository).load_csv
     repo = MerchantRepository.new(data, sales_engine)
-    expected_1 = "5"
+    expected_1 = 5
     expected_2 = []
 
     output_1 = repo.find_all_by_name("Williamson Group")
@@ -133,7 +133,7 @@ class MerchantRepositoryTest < Minitest::Test
     input_csv = fixture_path('merchants_fixture.csv')
     data = MerchantParser.new(input_csv, merchant_repository).load_csv
     repo = MerchantRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_created_at("2012-03-27 14:53:59 UTC")
@@ -149,7 +149,7 @@ class MerchantRepositoryTest < Minitest::Test
     input_csv = fixture_path('merchants_fixture.csv')
     data = MerchantParser.new(input_csv, merchant_repository).load_csv
     repo = MerchantRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC")

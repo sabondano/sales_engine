@@ -47,7 +47,7 @@ class CustomerRepositoryTest < Minitest::Test
     data = CustomerParser.new(input_csv, merchant_repository).load_csv
     repo = CustomerRepository.new(data, sales_engine)
 
-    output = repo.find_by_id("1")
+    output = repo.find_by_id(1)
 
     assert_equal "Joey", output.first_name
   end
@@ -111,8 +111,8 @@ class CustomerRepositoryTest < Minitest::Test
     data = CustomerParser.new(input_csv, merchant_repository).load_csv
     repo = CustomerRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_id("1")
-    output_2 = repo.find_all_by_id("11")
+    output_1 = repo.find_all_by_id(1)
+    output_2 = repo.find_all_by_id(11)
 
     assert_equal "Joey", output_1[0].first_name
     assert_equal [], output_2
@@ -129,9 +129,9 @@ class CustomerRepositoryTest < Minitest::Test
     output_2 = repo.find_all_by_first_name("Sebastian")
     output_3 = repo.find_all_by_first_name("joey")
 
-    assert_equal "1", output_1[0].id
+    assert_equal 1, output_1[0].id
     assert_equal [], output_2
-    assert_equal "1", output_3[0].id
+    assert_equal 1, output_3[0].id
   end
 
   def test_it_finds_all_customers_by_last_name
@@ -145,9 +145,9 @@ class CustomerRepositoryTest < Minitest::Test
     output_2 = repo.find_all_by_last_name("Abondano")
     output_3 = repo.find_all_by_last_name("osinski")
 
-    assert_equal "2", output_1[0].id
+    assert_equal 2, output_1[0].id
     assert_equal [], output_2
-    assert_equal "2", output_3[0].id
+    assert_equal 2, output_3[0].id
   end
 
   def test_it_finds_all_customers_by_created_at
@@ -160,7 +160,7 @@ class CustomerRepositoryTest < Minitest::Test
     output_1 = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
     output_2 = repo.find_all_by_created_at("2015-03-27 14:54:09 UTC")
 
-    assert_equal "1", output_1[0].id
+    assert_equal 1, output_1[0].id
     assert_equal [], output_2
   end
 
@@ -174,7 +174,7 @@ class CustomerRepositoryTest < Minitest::Test
     output_1 = repo.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
     output_2 = repo.find_all_by_updated_at("2015-03-27 14:54:09 UTC")
 
-    assert_equal "1", output_1[0].id
+    assert_equal 1, output_1[0].id
     assert_equal [], output_2
   end
 

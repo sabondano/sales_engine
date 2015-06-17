@@ -8,7 +8,7 @@ class MerchantTest < Minitest::Test
 
     merchant = Merchant.new(data, repository)
 
-    assert_equal "1", merchant.id
+    assert_equal 1, merchant.id
   end
 
   def test_merchant_has_a_name

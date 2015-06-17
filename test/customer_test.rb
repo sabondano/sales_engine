@@ -8,7 +8,7 @@ class CustomerTest < Minitest::Test
 
     customer = Customer.new(data, repository)
 
-    assert_equal "1", customer.id
+    assert_equal 1, customer.id
   end
 
   def test_customer_has_a_last_name

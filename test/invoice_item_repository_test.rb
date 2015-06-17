@@ -49,9 +49,9 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_id("1")
+    output = repo.find_by_id(1)
 
     assert_equal expected, output.invoice_id
   end
@@ -62,9 +62,9 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_item_id("539")
+    output = repo.find_by_item_id(539)
 
     assert_equal expected, output.invoice_id
   end
@@ -75,9 +75,9 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "539"
+    expected = 539
 
-    output = repo.find_by_invoice_id("1")
+    output = repo.find_by_invoice_id(1)
 
     assert_equal expected, output.item_id
   end
@@ -88,9 +88,9 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_quantity("5")
+    output = repo.find_by_quantity(5)
 
     assert_equal expected, output.invoice_id
   end
@@ -101,7 +101,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_unit_price(136.35)
 
@@ -114,7 +114,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_created_at("2012-03-27 14:54:09 UTC")
 
@@ -127,7 +127,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_updated_at("2012-03-27 14:54:09 UTC")
 
@@ -140,11 +140,11 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_id("1")
-    output_2 = repo.find_all_by_id("11")
+    output_1 = repo.find_all_by_id(1)
+    output_2 = repo.find_all_by_id(11)
 
     assert_equal expected_1, output_1[0].invoice_id
     assert_equal expected_2, output_2
@@ -156,11 +156,11 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_item_id("539")
-    output_2 = repo.find_all_by_item_id("400")
+    output_1 = repo.find_all_by_item_id(539)
+    output_2 = repo.find_all_by_item_id(400)
 
     assert_equal expected_1, output_1[0].id
     assert_equal expected_2, output_2
@@ -172,11 +172,11 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_invoice_id("1")
-    output_2 = repo.find_all_by_invoice_id("7")
+    output_1 = repo.find_all_by_invoice_id(1)
+    output_2 = repo.find_all_by_invoice_id(7)
 
     assert_equal expected_1, output_1[0].id
     assert_equal expected_2, output_2
@@ -188,11 +188,11 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_quantity("5")
-    output_2 = repo.find_all_by_quantity("16")
+    output_1 = repo.find_all_by_quantity(5)
+    output_2 = repo.find_all_by_quantity(16)
 
     assert_equal expected_1, output_1[0].id
     assert_equal expected_2, output_2
@@ -204,7 +204,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "4"
+    expected_1 = 4
     expected_2 = []
 
     output_1 = repo.find_all_by_unit_price(21.96)
@@ -220,7 +220,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
@@ -236,7 +236,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     input_csv = fixture_path('invoice_items_fixture.csv')
     data = InvoiceItemParser.new(input_csv, invoice_item_repository).load_csv
     repo = InvoiceItemRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")

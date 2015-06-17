@@ -49,9 +49,9 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_id("1")
+    output = repo.find_by_id(1)
 
     assert_equal expected, output.invoice_id
   end
@@ -62,9 +62,9 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_invoice_id("1")
+    output = repo.find_by_invoice_id(1)
 
     assert_equal expected, output.invoice_id
   end
@@ -75,9 +75,9 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
-    output = repo.find_by_credit_card_number("4654405418249632")
+    output = repo.find_by_credit_card_number(4654405418249632)
 
     assert_equal expected, output.invoice_id
   end
@@ -88,7 +88,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_credit_card_expiration_date("10/13")
 
@@ -101,7 +101,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_result("success")
 
@@ -114,7 +114,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_created_at("2012-03-27 14:54:09 UTC")
 
@@ -127,7 +127,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected = "1"
+    expected = 1
 
     output = repo.find_by_updated_at("2012-03-27 14:54:09 UTC")
 
@@ -140,11 +140,11 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_id("1")
-    output_2 = repo.find_all_by_id("11")
+    output_1 = repo.find_all_by_id(1)
+    output_2 = repo.find_all_by_id(11)
 
     assert_equal expected_1, output_1[0].invoice_id
     assert_equal expected_2, output_2
@@ -156,11 +156,11 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
-    output_1 = repo.find_all_by_invoice_id("1")
-    output_2 = repo.find_all_by_invoice_id("3")
+    output_1 = repo.find_all_by_invoice_id(1)
+    output_2 = repo.find_all_by_invoice_id(3)
 
     assert_equal expected_1, output_1[0].id
     assert_equal expected_2, output_2
@@ -172,11 +172,11 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "7"
+    expected_1 = 7
     expected_2 = []
 
-    output_1 = repo.find_all_by_credit_card_number("4801647818676136")
-    output_2 = repo.find_all_by_credit_card_number("1234567890123456")
+    output_1 = repo.find_all_by_credit_card_number(4801647818676136)
+    output_2 = repo.find_all_by_credit_card_number(1234567890123456)
 
     assert_equal expected_1, output_1[0].id
     assert_equal expected_2, output_2
@@ -188,7 +188,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "2"
+    expected_1 = 2
     expected_2 = []
 
     output_1 = repo.find_all_by_credit_card_expiration_date("03/12")
@@ -204,7 +204,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_result("success")
@@ -220,7 +220,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
@@ -236,7 +236,7 @@ class TransactionRepositoryTest < Minitest::Test
     input_csv = fixture_path('transaction_fixture.csv')
     data = TransactionParser.new(input_csv, transaction_repository).load_csv
     repo = TransactionRepository.new(data, sales_engine)
-    expected_1 = "1"
+    expected_1 = 1
     expected_2 = []
 
     output_1 = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
