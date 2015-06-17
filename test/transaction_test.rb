@@ -8,7 +8,7 @@ class TransactionTest < Minitest::Test
 
     transaction = Transaction.new(data, repository)
 
-    assert_equal "1", transaction.id
+    assert_equal 1, transaction.id
   end
 
   def test_transaction_has_an_invoice_id
@@ -17,7 +17,7 @@ class TransactionTest < Minitest::Test
 
     transaction = Transaction.new(data, repository)
 
-    assert_equal "1", transaction.invoice_id
+    assert_equal 1, transaction.invoice_id
   end
 
   def test_transaction_has_a_result
