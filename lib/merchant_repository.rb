@@ -4,8 +4,12 @@ class MerchantRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @merchants = data
+    @merchants = data.map { |attributes| Merchant.new(attributes, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#{self.class} #{@merchants.size} rows"
   end
 
   def all
