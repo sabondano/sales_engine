@@ -17,7 +17,7 @@ class InvoiceParserTest < Minitest::Test
     output = parser.load_csv
 
     assert_equal 10, output.count
-    assert_equal "26", output[0].merchant_id
+    assert_equal 26, output[0].merchant_id
   end
 
   private

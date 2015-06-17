@@ -47,9 +47,9 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output = repo.find_by_invoice_id("1")
+    output = repo.find_by_invoice_id(1)
 
-    assert_equal "26", output.merchant_id
+    assert_equal 26, output.merchant_id
   end
 
   def test_finds_by_customer_id
@@ -59,9 +59,9 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output = repo.find_by_customer_id("2")
+    output = repo.find_by_customer_id(2)
 
-    assert_equal "27", output.merchant_id
+    assert_equal 27, output.merchant_id
   end
 
   def test_finds_by_merchant_id
@@ -71,9 +71,9 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output = repo.find_by_merchant_id("86")
+    output = repo.find_by_merchant_id(86)
 
-    assert_equal "10", output.id
+    assert_equal 10, output.id
   end
 
   def test_it_finds_by_status
@@ -85,7 +85,7 @@ class InvoiceRepositoryTest < Minitest::Test
 
     output = repo.find_by_status("shipped")
 
-    assert_equal "1", output.id
+    assert_equal 1, output.id
   end
 
   def test_finds_by_created_at
@@ -95,9 +95,9 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output = repo.find_by_created_at("2012-03-25 09:54:09 UTC")
+    output = repo.find_by_created_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
 
-    assert_equal "1", output.id
+    assert_equal 1, output.id
   end
 
   def test_finds_by_updated_at
@@ -107,9 +107,9 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output = repo.find_by_updated_at("2012-03-25 09:54:09 UTC")
+    output = repo.find_by_updated_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
 
-    assert_equal "1", output.id
+    assert_equal 1, output.id
   end
 
   def test_finds_all_invoice_by_id
@@ -119,10 +119,10 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_invoice_id("2")
-    output_2 = repo.find_all_by_invoice_id("11")
+    output_1 = repo.find_all_by_invoice_id(2)
+    output_2 = repo.find_all_by_invoice_id(11)
 
-    assert_equal "75", output_1[0].merchant_id
+    assert_equal 75, output_1[0].merchant_id
     assert_equal [], output_2
   end
 
@@ -133,10 +133,10 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_customer_id("2")
-    output_2 = repo.find_all_by_customer_id("11")
+    output_1 = repo.find_all_by_customer_id(2)
+    output_2 = repo.find_all_by_customer_id(11)
 
-    assert_equal "27", output_1[0].merchant_id
+    assert_equal 27, output_1[0].merchant_id
     assert_equal [], output_2
   end
 
@@ -147,10 +147,10 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_merchant_id("26")
-    output_2 = repo.find_all_by_merchant_id("11")
+    output_1 = repo.find_all_by_merchant_id(26)
+    output_2 = repo.find_all_by_merchant_id(11)
 
-    assert_equal "1", output_1[0].id
+    assert_equal 1, output_1[0].id
     assert_equal [], output_2
   end
 
@@ -175,8 +175,8 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_created_at("2012-03-25 09:54:09 UTC")
-    output_2 = repo.find_all_by_created_at("2015-03-25 09:54:09 UTC")
+    output_1 = repo.find_all_by_created_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
+    output_2 = repo.find_all_by_created_at(DateTime.parse('2015-03-25 09:54:09 UTC'))
 
     assert_equal 1, output_1.count
     assert_equal [], output_2
@@ -189,8 +189,8 @@ class InvoiceRepositoryTest < Minitest::Test
     data = InvoiceParser.new(input_csv, customer_repository).load_csv
     repo = InvoiceRepository.new(data, sales_engine)
 
-    output_1 = repo.find_all_by_updated_at("2012-03-25 09:54:09 UTC")
-    output_2 = repo.find_all_by_updated_at("2015-03-25 09:54:09 UTC")
+    output_1 = repo.find_all_by_updated_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
+    output_2 = repo.find_all_by_updated_at(DateTime.parse('2015-03-25 09:54:09 UTC'))
 
     assert_equal 1, output_1.count
     assert_equal [], output_2

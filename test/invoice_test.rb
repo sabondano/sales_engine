@@ -8,7 +8,7 @@ class InvoiceTest < Minitest::Test
 
     invoice = Invoice.new(data, repository)
 
-    assert_equal "1", invoice.id
+    assert_equal 1, invoice.id
   end
 
   def test_invoice_has_status
