@@ -1,7 +1,7 @@
 require 'bigdecimal'
 
 class Item
-  attr_reader :name, :created_at, :unit_price, :updated_at, :merchant_id, :id, :description
+  attr_reader :name, :created_at, :unit_price, :updated_at, :merchant_id, :id, :description, :repository
 
   def initialize(data, repository)
     @id          = data[:id].to_i
