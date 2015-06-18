@@ -1,9 +1,15 @@
 class InvoiceRepository
-  attr_reader :invoices, :sales_engine
+
+  attr_reader :invoices,
+              :sales_engine
 
   def initialize(data, sales_engine)
-    @invoices = data
+    @invoices = data.map { |attributes| Invoice.new(attributes, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#{self.class} #{@invoices.size} rows"
   end
 
   def all
@@ -14,7 +20,7 @@ class InvoiceRepository
     invoices.sample
   end
 
-  def find_by_invoice_id(id)
+  def find_by_id(id)
     invoices.find do |invoice|
       invoice.id == id
     end
@@ -50,7 +56,7 @@ class InvoiceRepository
     end
   end
 
-  def find_all_by_invoice_id(id)
+  def find_all_by_id(id)
     invoices.find_all do |invoice|
       invoice.id == id
     end

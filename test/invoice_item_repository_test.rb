@@ -12,6 +12,10 @@ class InvoiceItemRepositoryTest < Minitest::Test
     @invoice_item_repository = engine.invoice_item_repository
   end
 
+  def test_it_find_all_invoice_items
+    assert_equal 10, invoice_item_repository.all.count
+  end
+
   def test_it_finds_a_single_invoice_item
     assert_equal 539, invoice_item_repository.find_by_id(1).item_id
   end
