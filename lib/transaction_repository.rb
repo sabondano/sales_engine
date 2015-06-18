@@ -1,5 +1,6 @@
 class TransactionRepository
-  attr_reader :transactions, :sales_engine
+  attr_reader :transactions,
+              :sales_engine
 
   def initialize(data, sales_engine)
     @transactions = data.map { |attributes| Transaction.new(attributes, self) }
