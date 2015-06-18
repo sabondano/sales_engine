@@ -35,6 +35,12 @@ class InvoiceTest < Minitest::Test
     assert_equal 1, result.count
   end
 
+  def test_find_invoice_items_returns_invoice_items_associated_with_invoice
+    result = @invoice_repository.invoices[0].invoice_items
+
+    assert_equal 8, result.count
+  end
+
   private
 
   def fixtures_directory

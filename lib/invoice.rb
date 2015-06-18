@@ -14,4 +14,8 @@ class Invoice
   def transactions
     @transactions ||= @repository.find_transactions(id)
   end
+
+  def invoice_items
+    @invoice_items ||= @repository.find_invoice_items(id)
+  end
 end
