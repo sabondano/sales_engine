@@ -9,7 +9,6 @@ class MerchantTest < Minitest::Test
     engine = SalesEngine.new(fixtures_directory)
     engine.startup
     @merchant_repository = engine.merchant_repository
-    @item_repository = engine.item_repository
   end
 
   def test_merchant_has_an_id
