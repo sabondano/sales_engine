@@ -1,11 +1,13 @@
 class TransactionRepository
-
-  attr_reader :transactions,
-              :sales_engine
+  attr_reader :transactions, :sales_engine
 
   def initialize(data, sales_engine)
-    @transactions = data
+    @transactions = data.map { |attributes| Transaction.new(attributes, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#{self.class} #{@transactions.size} rows"
   end
 
   def all
@@ -99,5 +101,4 @@ class TransactionRepository
       transaction.updated_at == updated_at
     end
   end
-
 end
