@@ -10,4 +10,24 @@ class Invoice
     @updated_at  = DateTime.strptime(data[:updated_at], '%Y-%m-%d %H:%M:%S %Z')
     @repository  = repository
   end
+
+  def transactions
+    @transactions ||= @repository.find_transactions(id)
+  end
+
+  def invoice_items
+    @invoice_items ||= @repository.find_invoice_items(id)
+  end
+
+  def customer
+    @customer ||= @repository.find_customer(id)
+  end
+
+  def merchant
+    @merchant ||= @repository.find_merchant(id)
+  end
+
+  def items
+    @items ||= @repository.find_items(id)
+  end
 end
