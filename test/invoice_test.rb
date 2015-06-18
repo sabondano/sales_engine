@@ -41,6 +41,12 @@ class InvoiceTest < Minitest::Test
     assert_equal 8, result.count
   end
 
+  def test_find_customer_returns_customer_associated_with_invoice
+    result = @invoice_repository.invoices[0].customer
+
+    assert_equal "Joey", result.first_name
+  end
+
   private
 
   def fixtures_directory
