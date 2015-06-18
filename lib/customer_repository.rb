@@ -1,9 +1,14 @@
 class CustomerRepository
-  attr_reader :sales_engine, :customers
+  attr_reader :sales_engine,
+              :customers
 
   def initialize(data, sales_engine)
-    @customers = data
+    @customers = data.map { |attributes| Customer.new(attributes, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#{self.class} #{@customers.size} rows"
   end
 
   def all
