@@ -42,6 +42,11 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 3, result.customer_id
   end
 
+  def test_find_item_returns_an_item_associated_with_invoice_item
+    result = @invoice_item_repository.invoice_items[7].item
+    assert_equal 8, result.id
+  end
+
   private
 
   def fixtures_directory
