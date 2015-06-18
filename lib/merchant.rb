@@ -19,7 +19,7 @@ class Merchant
   end
 
   def invoices
-    @invoices ||=@repository.find_invoices(id)
+    @invoices ||= @repository.find_invoices(id)
   end
 
 end
