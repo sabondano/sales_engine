@@ -53,6 +53,12 @@ class InvoiceTest < Minitest::Test
     assert_equal "Bechtelar, Jones and Stokes", result.name
   end
 
+  def test_find_items_returns_items_associated_with_invoice
+    result = @invoice_repository.invoices[0].items
+
+    assert_equal 8, result.count
+  end
+
   private
 
   def fixtures_directory

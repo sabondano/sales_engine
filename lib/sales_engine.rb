@@ -64,4 +64,10 @@ class SalesEngine
   def find_merchant_by_invoice_id(id)
     merchant_repository.find_by_id(id)
   end
+
+  def find_items_by_invoice_id(id)
+    find_invoice_items_by_invoice_id(id).map do |invoice_item|
+      item_repository.find_all_by_id(invoice_item.item_id)
+    end
+  end
 end

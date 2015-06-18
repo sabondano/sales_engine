@@ -26,4 +26,8 @@ class Invoice
   def merchant
     @merchant ||= @repository.find_merchant(id)
   end
+
+  def items
+    @items ||= @repository.find_items(id)
+  end
 end
