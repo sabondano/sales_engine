@@ -1,6 +1,7 @@
 require 'bigdecimal'
 
 class InvoiceItem
+
   attr_reader :id,
               :item_id,
               :invoice_id,
@@ -20,4 +21,9 @@ class InvoiceItem
     @updated_at = data[:updated_at]
     @repository = repository
   end
+
+  def invoice
+    @invoice ||= @repository.find_invoice(id)
+  end
+
 end
