@@ -47,6 +47,12 @@ class InvoiceTest < Minitest::Test
     assert_equal "Joey", result.first_name
   end
 
+  def test_find_merchant_returns_merchant_associated_with_invoice
+    result = @invoice_repository.invoices[9].merchant
+
+    assert_equal "Bechtelar, Jones and Stokes", result.name
+  end
+
   private
 
   def fixtures_directory

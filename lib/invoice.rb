@@ -22,4 +22,8 @@ class Invoice
   def customer
     @customer ||= @repository.find_customer(id)
   end
+
+  def merchant
+    @merchant ||= @repository.find_merchant(id)
+  end
 end
