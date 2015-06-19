@@ -35,6 +35,12 @@ class ItemTest < Minitest::Test
     assert_equal 1, result_2.count
   end
 
+  def test_find_merchant_returns_a_merchant_associated_with_item
+    result_1 = @item_repository.items[0].merchant
+
+    assert_equal 'Schroeder-Jerde', result_1.name
+  end
+
   private
 
   def fixtures_directory
