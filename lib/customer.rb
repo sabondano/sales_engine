@@ -1,5 +1,4 @@
 class Customer
-
   attr_reader :created_at,
               :last_name,
               :updated_at,
@@ -15,5 +14,8 @@ class Customer
     @updated_at = data[:updated_at]
     @repository = repository
   end
-  
+
+  def invoices
+    @invoices ||= @repository.find_invoices(id)
+  end
 end
