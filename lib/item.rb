@@ -13,4 +13,8 @@ class Item
     @updated_at  = DateTime.strptime(data[:updated_at], '%Y-%m-%d %H:%M:%S %Z')
     @repository  = repository
   end
+
+  def invoice_items
+    @invoice_items ||= @repository.find_invoice_items(id)
+  end
 end
