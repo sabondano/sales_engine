@@ -102,4 +102,8 @@ class TransactionRepository
       transaction.updated_at == updated_at
     end
   end
+
+  def find_invoice(id)
+    sales_engine.find_invoice_by_transaction_id(id)
+  end
 end
