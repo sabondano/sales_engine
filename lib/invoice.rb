@@ -20,7 +20,7 @@ class Invoice
   end
 
   def customer
-    @customer ||= @repository.find_customer(id)
+    @customer ||= @repository.find_customer(customer_id)
   end
 
   def merchant
