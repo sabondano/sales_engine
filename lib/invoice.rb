@@ -28,6 +28,8 @@ class Invoice
   end
 
   def items
-    @items ||= @repository.find_items(id)
+    invoice_items.map do |invoice_item|
+      invoice_item.item
+    end
   end
 end
