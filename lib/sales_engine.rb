@@ -66,9 +66,9 @@ class SalesEngine
   end
 
   def find_items_by_invoice_id(id)
-    # find_invoice_items_by_invoice_id(invoice_id).select do |invoice_item|
-      item_repository.find_all_by_id(invoice_item.item_id)
-    # end
+    find_invoice_items_by_invoice_id(id).select do |invoice_item|
+      item_repository.find_by_id(invoice_item.item_id)
+    end
   end
 
   def find_invoice_by_invoice_item_id(item_id)
