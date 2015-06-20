@@ -39,7 +39,7 @@ class InvoiceItemTest < Minitest::Test
 
   def test_find_invoice_returns_an_invoice_associated_with_invoice_item
     result = @invoice_item_repository.invoice_items[9].invoice
-    assert_equal 3, result.customer_id
+    assert_equal 1, result.customer_id
   end
 
   def test_find_item_returns_an_item_associated_with_invoice_item
