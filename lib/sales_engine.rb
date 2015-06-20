@@ -57,8 +57,8 @@ class SalesEngine
     invoice_item_repository.find_all_by_invoice_id(id)
   end
 
-  def find_customer_by_invoice_id(id)
-    customer_repository.find_by_id(id)
+  def find_customer_by_customer_id(customer_id)
+    customer_repository.find_by_id(customer_id)
   end
 
   def find_merchant_by_invoice_id(id)
@@ -66,25 +66,25 @@ class SalesEngine
   end
 
   def find_items_by_invoice_id(id)
-    find_invoice_items_by_invoice_id(id).map do |invoice_item|
-      item_repository.find_all_by_id(invoice_item.item_id)
+    find_invoice_items_by_invoice_id(id).select do |invoice_item|
+      item_repository.find_by_id(invoice_item.item_id)
     end
   end
 
-  def find_invoice_by_invoice_item_id(id)
-    invoice_repository.find_by_id(id)
+  def find_invoice_by_invoice_item_id(item_id)
+    invoice_repository.find_by_id(item_id)
   end
 
-  def find_item_by_invoice_item_id(id)
-    item_repository.find_by_id(id)
+  def find_item_by_item_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
   def find_invoice_items_by_item_id(id)
     invoice_item_repository.find_all_by_item_id(id)
   end
 
-  def find_merchant_by_item_id(id)
-    merchant_repository.find_by_id(id)
+  def find_merchant_by_merchant_id(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
   end
 
   def find_invoice_by_transaction_id(id)

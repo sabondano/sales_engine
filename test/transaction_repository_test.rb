@@ -47,7 +47,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_finds_transactions_by_credit_card_number
-    output = transaction_repository.find_by_credit_card_number(4654405418249632)
+    output = transaction_repository.find_by_credit_card_number("4654405418249632")
     expected = 1
 
     assert_equal expected, output.invoice_id
@@ -102,8 +102,8 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_find_all_transactions_by_credit_card_number
-    output_1 = transaction_repository.find_all_by_credit_card_number(4801647818676136)
-    output_2 = transaction_repository.find_all_by_credit_card_number(1234567890123456)
+    output_1 = transaction_repository.find_all_by_credit_card_number("4801647818676136")
+    output_2 = transaction_repository.find_all_by_credit_card_number("1234567890123456")
     expected_1 = 7
     expected_2 = []
 

@@ -39,8 +39,7 @@ class TransactionTest < Minitest::Test
 
   def test_find_invoice_returns_an_invoice_for_associated_transaction
     result = @transaction_repository.transactions[9].invoice
-
-    assert_equal 3, result.customer_id
+    assert_equal 1, result.customer_id
   end
 
   private
