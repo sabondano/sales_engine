@@ -102,8 +102,8 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_find_all_transactions_by_credit_card_number
-    output_1 = transaction_repository.find_all_by_credit_card_number(4801647818676136)
-    output_2 = transaction_repository.find_all_by_credit_card_number(1234567890123456)
+    output_1 = transaction_repository.find_all_by_credit_card_number("4801647818676136")
+    output_2 = transaction_repository.find_all_by_credit_card_number("1234567890123456")
     expected_1 = 7
     expected_2 = []
 
