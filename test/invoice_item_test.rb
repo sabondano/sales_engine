@@ -44,7 +44,7 @@ class InvoiceItemTest < Minitest::Test
 
   def test_find_item_returns_an_item_associated_with_invoice_item
     result = @invoice_item_repository.invoice_items[7].item
-    assert_equal 8, result.id
+    assert_equal 534, result.id
   end
 
   private

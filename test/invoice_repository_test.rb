@@ -52,7 +52,7 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def test_finds_all_invoices_by_id
     result1 = invoice_repository.find_all_by_id(1)
-    result2 = invoice_repository.find_all_by_id(11)
+    result2 = invoice_repository.find_all_by_id(143679483)
     assert_equal Array, result1.class
     assert_equal 1, result1.length
     assert_equal 0, result2.length
