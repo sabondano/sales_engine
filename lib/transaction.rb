@@ -20,6 +20,6 @@ class Transaction
   end
 
   def invoice
-    @invoice ||= @repository.find_invoice(id)
+    @invoice ||= @repository.find_invoice(invoice_id)
   end
 end

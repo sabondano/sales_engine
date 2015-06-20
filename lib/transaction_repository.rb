@@ -103,7 +103,7 @@ class TransactionRepository
     end
   end
 
-  def find_invoice(id)
-    sales_engine.find_invoice_by_transaction_id(id)
+  def find_invoice(invoice_id)
+    sales_engine.find_invoice_by_transaction_id(invoice_id)
   end
 end
