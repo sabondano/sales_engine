@@ -33,7 +33,7 @@ class Merchant
 
   def successful_invoices
     successful_transactions ||= invoices.map { |i| i.transactions }.flatten
-    successful_transactions.select! { |t| t.result == 'success'}
+    successful_transactions.select! { |t| t.result == 'success' }
     invoices = successful_transactions.map { |t| t.invoice }
     invoices
   end
