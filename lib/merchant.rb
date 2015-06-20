@@ -29,6 +29,8 @@ class Merchant
     end
   end
 
+  private
+
   def successful_invoices
     successful_transactions ||= invoices.map { |i| i.transactions }.flatten
     successful_transactions.select! { |t| t.result == 'success'}
