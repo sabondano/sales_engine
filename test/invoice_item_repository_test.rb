@@ -75,7 +75,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
     result1 = invoice_item_repository.find_all_by_invoice_id(1)
     result2 = invoice_item_repository.find_all_by_invoice_id(7)
     assert_equal Array, result1.class
-    assert_equal 8, result1.length
+    assert_equal 7, result1.length
     assert_equal 0, result2.length
   end
 

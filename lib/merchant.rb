@@ -1,3 +1,5 @@
+require 'date'
+
 class Merchant
 
   attr_reader :name,
@@ -22,10 +24,21 @@ class Merchant
     @invoices ||= @repository.find_invoices(id)
   end
 
-  def revenue
-    successful_invoice_items =  successful_invoices.map { |i| i.invoice_items }.flatten
-    successful_invoice_items.reduce(0) do |revenue, invoice_item|
-      revenue + (invoice_item.quantity * invoice_item.unit_price)
+  def revenue(date=nil)
+    if date.is_a?(Date)
+      invoices_for_given_date = invoices.select { |i| Date.parse(i.created_at) == date }
+      successful_transactions ||= invoices_for_given_date.map { |i| i.transactions }.flatten
+      successful_transactions.select! { |t| t.result == 'success' }
+      successful_invoices_for_given_date = successful_transactions.map { |t| t.invoice }
+      successful_invoice_items_for_given_date = successful_invoices_for_given_date.map { |i| i.invoice_items }.flatten
+      successful_invoice_items_for_given_date.reduce(0) do |revenue, invoice_item|
+        revenue + (invoice_item.quantity * invoice_item.unit_price)
+      end
+    else
+      successful_invoice_items =  successful_invoices.map { |i| i.invoice_items }.flatten
+      successful_invoice_items.reduce(0) do |revenue, invoice_item|
+        revenue + (invoice_item.quantity * invoice_item.unit_price)
+      end
     end
   end
 

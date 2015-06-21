@@ -32,11 +32,16 @@ class MerchantTest < Minitest::Test
 
   def test_find_invoices_returns_invoices_associated_with_merchant
     result = @merchant_repository.merchants[9].invoices
-    assert_equal 1, result.count
+    assert_equal 2, result.count
   end
 
   def test_revenue_reports_all_revenue_for_a_merchant
     result = @merchant_repository.merchants[9].revenue
+    assert_equal BigDecimal.new('1872.74'), result
+  end
+
+  def test_revenue_with_date_reports_all_revenue_for_that_date
+    result = @merchant_repository.merchants[9].revenue('2012-03-24 15:54:10 UTC')
     assert_equal BigDecimal.new('1872.74'), result
   end
 

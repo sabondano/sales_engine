@@ -38,7 +38,7 @@ class InvoiceTest < Minitest::Test
   def test_find_invoice_items_returns_invoice_items_associated_with_invoice
     result = @invoice_repository.invoices[0].invoice_items
 
-    assert_equal 8, result.count
+    assert_equal 7, result.count
   end
 
   def test_find_customer_returns_customer_associated_with_invoice
@@ -56,7 +56,7 @@ class InvoiceTest < Minitest::Test
   def test_find_items_returns_items_associated_with_invoice
     result = @invoice_repository.invoices[0].items
 
-    assert_equal 8, result.count
+    assert_equal 7, result.count
   end
 
   private
