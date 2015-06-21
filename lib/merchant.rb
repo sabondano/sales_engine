@@ -26,28 +26,34 @@ class Merchant
 
   def revenue(date=nil)
     if date.is_a?(Date)
-      invoices_for_given_date = invoices.select { |i| Date.parse(i.created_at) == date }
-      successful_transactions ||= invoices_for_given_date.map { |i| i.transactions }.flatten
-      successful_transactions.select! { |t| t.result == 'success' }
-      successful_invoices_for_given_date = successful_transactions.map { |t| t.invoice }
-      successful_invoice_items_for_given_date = successful_invoices_for_given_date.map { |i| i.invoice_items }.flatten
-      successful_invoice_items_for_given_date.reduce(0) do |revenue, invoice_item|
-        revenue + (invoice_item.quantity * invoice_item.unit_price)
-      end
+      calculate_revenue_from_invoice_items(find_invoices_by_date(date))
     else
-      successful_invoice_items =  successful_invoices.map { |i| i.invoice_items }.flatten
-      successful_invoice_items.reduce(0) do |revenue, invoice_item|
-        revenue + (invoice_item.quantity * invoice_item.unit_price)
-      end
+      calculate_revenue_from_invoice_items(invoices)
     end
   end
 
   private
 
-  def successful_invoices
-    successful_transactions ||= invoices.map { |i| i.transactions }.flatten
-    successful_transactions.select! { |t| t.result == 'success' }
-    invoices = successful_transactions.map { |t| t.invoice }
-    invoices
+  def successful_invoices(invoices)
+    successful_transactions(invoices).select { |t| t.result == "success" }.
+      map(&:invoice)
+  end
+
+  def successful_transactions(invoices)
+    invoices.map(&:transactions).flatten
+  end
+
+  def successful_invoice_items(invoices)
+    successful_invoices(invoices).map(&:invoice_items).flatten
+  end
+
+  def calculate_revenue_from_invoice_items(invoices)
+    successful_invoice_items(invoices).inject(0) do |revenue, invoice_item|
+      revenue + (invoice_item.quantity * invoice_item.unit_price)
+    end
+  end
+
+  def find_invoices_by_date(date)
+    invoices.select { |i| Date.parse(i.created_at) == date }
   end
 end
