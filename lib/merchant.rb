@@ -32,6 +32,10 @@ class Merchant
     end
   end
 
+  def items_sold
+    count_items_sold
+  end
+
   private
 
   def successful_invoices(invoices)
@@ -55,5 +59,11 @@ class Merchant
 
   def find_invoices_by_date(date)
     invoices.select { |i| Date.parse(i.created_at) == date }
+  end
+
+  def count_items_sold
+    successful_invoice_items(invoices).inject(0) do |total_units, invoice_item|
+      total_units + invoice_item.quantity
+    end
   end
 end

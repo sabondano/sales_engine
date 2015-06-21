@@ -79,4 +79,8 @@ class MerchantRepository
   def most_revenue(x)
     merchants.sort_by { |merchant| merchant.revenue }.reverse[0..(x-1)]
   end
+
+  def most_items(x)
+    merchants.sort_by { |merchant| merchant.items_sold }.reverse[0..(x-1)]
+  end
 end
