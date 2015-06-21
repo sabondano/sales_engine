@@ -6,8 +6,8 @@ class Invoice
     @customer_id = data[:customer_id].to_i
     @merchant_id = data[:merchant_id].to_i
     @status      = data[:status]
-    @created_at  = DateTime.strptime(data[:created_at], '%Y-%m-%d %H:%M:%S %Z')
-    @updated_at  = DateTime.strptime(data[:updated_at], '%Y-%m-%d %H:%M:%S %Z')
+    @created_at  = data[:created_at]
+    @updated_at  = data[:updated_at]
     @repository  = repository
   end
 

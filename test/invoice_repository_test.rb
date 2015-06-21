@@ -41,12 +41,12 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_finds_by_created_at
-    result = invoice_repository.find_by_created_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
+    result = invoice_repository.find_by_created_at('2012-03-25 09:54:09 UTC')
     assert_equal 1, result.id
   end
 
   def test_finds_by_updated_at
-    result = invoice_repository.find_by_updated_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
+    result = invoice_repository.find_by_updated_at('2012-03-25 09:54:09 UTC')
     assert_equal 1, result.id
   end
 
@@ -83,16 +83,16 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_finds_all_by_created_at
-    result1 = invoice_repository.find_all_by_created_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
-    result2 = invoice_repository.find_all_by_created_at(DateTime.parse('2015-03-25 09:54:09 UTC'))
+    result1 = invoice_repository.find_all_by_created_at('2012-03-25 09:54:09 UTC')
+    result2 = invoice_repository.find_all_by_created_at('2015-03-25 09:54:09 UTC')
     assert_equal Array, result1.class
     assert_equal 1, result1.length
     assert_equal 0, result2.length
   end
 
   def test_finds_all_by_updated_at
-    result1 = invoice_repository.find_all_by_updated_at(DateTime.parse('2012-03-25 09:54:09 UTC'))
-    result2 = invoice_repository.find_all_by_updated_at(DateTime.parse('2015-03-25 09:54:09 UTC'))
+    result1 = invoice_repository.find_all_by_updated_at('2012-03-25 09:54:09 UTC')
+    result2 = invoice_repository.find_all_by_updated_at('2015-03-25 09:54:09 UTC')
     assert_equal Array, result1.class
     assert_equal 1, result1.length
     assert_equal 0, result2.length
