@@ -35,19 +35,20 @@ class Merchant
   private
 
   def successful_invoices(invoices)
-    successful_transactions(invoices).select { |t| t.result == 'success' }.map { |t| t.invoice }
+    successful_transactions(invoices).select { |t| t.result == "success" }
+        .map(&:invoice)
   end
 
   def successful_transactions(invoices)
-    invoices.map { |i| i.transactions }.flatten
+    invoices.map(&:transactions).flatten
   end
 
   def successful_invoice_items(invoices)
-    successful_invoices(invoices).map { |i| i.invoice_items }.flatten
+    successful_invoices(invoices).map(&:invoice_items).flatten
   end
 
   def calculate_revenue_from_invoice_items(invoices)
-    successful_invoice_items(invoices).reduce(0) do |revenue, invoice_item|
+    successful_invoice_items(invoices).inject(0) do |revenue, invoice_item|
       revenue + (invoice_item.quantity * invoice_item.unit_price)
     end
   end
