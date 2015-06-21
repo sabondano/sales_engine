@@ -69,6 +69,16 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 0, result2.length
   end
 
+  def test_most_revenue_returns_top_x_merchant_instances_ranked_by_total_revenue
+    load_data
+    result_1 = @se.merchant_repository.most_revenue(1)[0].id
+    result_2 = @se.merchant_repository.most_revenue(3).count
+    result_3 = @se.merchant_repository.most_revenue(2).last.id
+    assert_equal 20, result_1
+    assert_equal  3, result_2
+    assert_equal 30, result_3
+  end
+
   private
 
   def fixture_path(file_name)
@@ -79,4 +89,34 @@ class MerchantRepositoryTest < Minitest::Test
     File.expand_path('../../data/fixtures', __FILE__)
   end
 
+  def load_data
+    repo_data = {
+      merchants: [
+        {id: 10, name: "merchant_1"},
+        {id: 20, name: "merchant_2"},
+        {id: 30, name: "merchant_3"}
+      ],
+
+      invoices: [
+        {id: 1, merchant_id: 10},
+        {id: 2, merchant_id: 20},
+        {id: 3, merchant_id: 30}
+      ],
+
+      invoice_items: [
+        {id: 100, invoice_id: 1, quantity:  5,  unit_price: 10_000},
+        {id: 200, invoice_id: 2, quantity: 10,  unit_price: 20_000},
+        {id: 300, invoice_id: 3, quantity:  5,  unit_price: 30_000}
+      ],
+
+      transactions: [
+        {id: 7, invoice_id: 1, result: "success"},
+        {id: 8, invoice_id: 2, result: "success"},
+        {id: 9, invoice_id: 3, result: "success"},
+      ]
+    }
+
+    @se = SalesEngine.new("fake_path")
+    @se.init_repos(repo_data)
+  end
 end

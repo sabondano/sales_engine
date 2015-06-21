@@ -76,4 +76,7 @@ class MerchantRepository
     sales_engine.find_invoices_by_merchant_id(id)
   end
 
+  def most_revenue(x)
+    merchants.sort_by { |merchant| merchant.revenue }.reverse[0..(x-1)]
+  end
 end
