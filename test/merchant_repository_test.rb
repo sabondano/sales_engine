@@ -79,7 +79,7 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 30, result_3
   end
   
-  def test_most_items_returns_top_x_merchant_instances_ranked_by_total_items_sold
+  def test_most_items_returns_top_x_merchants_ranked_by_total_items_sold
     load_data
     result_1 = @se.merchant_repository.most_items(1)[0].id
     result_2 = @se.merchant_repository.most_items(3).count
