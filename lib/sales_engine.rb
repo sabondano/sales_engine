@@ -27,18 +27,21 @@ class SalesEngine
   end
 
   def startup
-    merchant_data = Parser.parse("#{@file_path}/merchants.csv")
-    @merchant_repository = MerchantRepository.new(merchant_data, self)
-    customer_data = Parser.parse("#{@file_path}/customers.csv")
-    @customer_repository = CustomerRepository.new(customer_data, self)
-    transaction_data = Parser.parse("#{@file_path}/transactions.csv")
-    @transaction_repository = TransactionRepository.new(transaction_data, self)
-    invoice_item_data = Parser.parse("#{@file_path}/invoice_items.csv")
-    @invoice_item_repository = InvoiceItemRepository.new(invoice_item_data, self)
-    item_data = Parser.parse("#{@file_path}/items.csv")
-    @item_repository = ItemRepository.new(item_data, self)
-    invoice_data = Parser.parse("#{@file_path}/invoices.csv")
-    @invoice_repository = InvoiceRepository.new(invoice_data, self)
+    init_repos merchants:      Parser.parse("#{@file_path}/merchants.csv"),
+               customers:      Parser.parse("#{@file_path}/customers.csv"),
+               transactions:   Parser.parse("#{@file_path}/transactions.csv"),
+               invoice_items:  Parser.parse("#{@file_path}/invoice_items.csv"),
+               items:          Parser.parse("#{@file_path}/items.csv"),
+               invoices:       Parser.parse("#{@file_path}/invoices.csv")
+  end
+
+  def init_repos(repo_data)
+    @merchant_repository     = MerchantRepository.new(repo_data.fetch(:merchants, []), self)
+    @customer_repository     = CustomerRepository.new(repo_data.fetch(:customers, []), self)
+    @transaction_repository  = TransactionRepository.new(repo_data.fetch(:transactions, []), self)
+    @invoice_item_repository = InvoiceItemRepository.new(repo_data.fetch(:invoice_items, []), self)
+    @item_repository         = ItemRepository.new(repo_data.fetch(:items, []), self)
+    @invoice_repository      = InvoiceRepository.new(repo_data.fetch(:invoices, []), self)
   end
 
   def find_items_by_merchant_id(id)
