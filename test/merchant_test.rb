@@ -45,6 +45,11 @@ class MerchantTest < Minitest::Test
     assert_equal BigDecimal.new('1872.74'), result
   end
 
+  def test_favorite_customer_returns_customer_with_most_successful_transactions
+    result = @merchant_repository.merchants[9].favorite_customer
+    assert_equal "Joey", result.first_name
+  end
+
   private
 
   def fixtures_directory

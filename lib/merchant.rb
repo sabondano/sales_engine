@@ -32,6 +32,19 @@ class Merchant
     end
   end
 
+  def favorite_customer
+    @c = successful_customers.reduce(Hash.new(0)) do |hash, customer_id|
+      hash[customer_id] += 1
+      hash
+    end
+    customer_id, invoice_count = @c.max_by do |key, value|
+      value
+    end
+    @repository.find_customer(customer_id)
+
+  end
+
+
   private
 
   def successful_invoices(invoices)
@@ -55,5 +68,11 @@ class Merchant
 
   def find_invoices_by_date(date)
     invoices.select { |i| Date.parse(i.created_at) == date }
+  end
+
+  def successful_customers
+    successful_invoices(invoices).map do |invoice|
+      invoice.customer_id
+    end
   end
 end
