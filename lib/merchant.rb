@@ -36,6 +36,18 @@ class Merchant
     count_items_sold
   end
 
+  def favorite_customer
+    @c = successful_customers.reduce(Hash.new(0)) do |hash, customer_id|
+      hash[customer_id] += 1
+      hash
+    end
+    customer_id, invoice_count = @c.max_by do |key, value|
+      value
+    end
+    @repository.find_customer(customer_id)
+
+  end
+
   private
 
   def successful_invoices(invoices)
@@ -64,6 +76,12 @@ class Merchant
   def count_items_sold
     successful_invoice_items(invoices).inject(0) do |total_units, invoice_item|
       total_units + invoice_item.quantity
+    end
+  end
+
+  def successful_customers
+    successful_invoices(invoices).map do |invoice|
+      invoice.customer_id
     end
   end
 end

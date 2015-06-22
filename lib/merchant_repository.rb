@@ -83,4 +83,8 @@ class MerchantRepository
   def most_items(x)
     merchants.sort_by(&:items_sold).reverse[0..(x - 1)]
   end
+
+  def find_customer(id)
+    sales_engine.find_customer_by_customer_id(id)
+  end
 end
