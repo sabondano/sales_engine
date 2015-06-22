@@ -18,4 +18,8 @@ class Customer
   def invoices
     @invoices ||= @repository.find_invoices(id)
   end
+
+  def transactions
+    invoices.flat_map(&:transactions)
+  end
 end

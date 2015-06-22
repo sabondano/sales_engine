@@ -36,6 +36,12 @@ class CustomerTest < Minitest::Test
     assert_equal 0, result_2.count
   end
 
+  def test_transactions_returns_all_transactions_assoc_with_customer
+    result = @customer_repository.customers[0].transactions
+
+    assert_equal 7, result.count
+  end
+
   private
 
   def fixtures_directory
