@@ -182,7 +182,8 @@ class ItemRepositoryTest < Minitest::Test
       items: [
         { id: 61, merchant_id: 10, unit_price: 10_000, created_at: "2012-03-24", updated_at: "2012-03-24" },
         { id: 63, merchant_id: 20, unit_price: 20_000, created_at: "2012-03-24", updated_at: "2012-03-24" },
-        { id: 65, merchant_id: 30, unit_price: 30_000, created_at: "2012-03-24", updated_at: "2012-03-24" }
+        { id: 65, merchant_id: 30, unit_price: 30_000, created_at: "2012-03-24", updated_at: "2012-03-24" },
+        { id: 66, merchant_id: 30, unit_price: 100_000, created_at: "2012-03-24", updated_at: "2012-03-24" }
       ],
 
       merchants: [
@@ -194,20 +195,22 @@ class ItemRepositoryTest < Minitest::Test
       invoices: [
         { id: 1, merchant_id: 10, created_at: "2012-03-24" },
         { id: 2, merchant_id: 20, created_at: "2012-03-25" },
-        { id: 3, merchant_id: 30, created_at: "2012-03-24" }
+        { id: 3, merchant_id: 30, created_at: "2012-03-24" },
+        { id: 4, merchant_id: 30, created_at: "2012-03-24" }
       ],
 
       invoice_items: [
         { id: 100, invoice_id: 1, item_id: 61, quantity:  5,  unit_price: 10_000 },
         { id: 200, invoice_id: 2, item_id: 63, quantity: 10,  unit_price: 20_000 },
-        { id: 300, invoice_id: 3, item_id: 65, quantity:  5,  unit_price: 30_000 }
+        { id: 300, invoice_id: 3, item_id: 65, quantity:  5,  unit_price: 30_000 },
+        { id: 400, invoice_id: 4, item_id: 66, quantity:  5,  unit_price: 100_000 }
       ],
 
       transactions: [
         { id: 6, invoice_id: 1, result: "success" },
         { id: 7, invoice_id: 2, result: "success" },
         { id: 8, invoice_id: 3, result: "success" },
-        { id: 9, invoice_id: 3, result: "failed"  }
+        { id: 9, invoice_id: 4, result: "failed"  },
       ]
       }
 
