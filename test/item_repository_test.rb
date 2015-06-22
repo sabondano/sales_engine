@@ -168,7 +168,9 @@ class ItemRepositoryTest < Minitest::Test
   def test_most_items_returns__top_x_item_instances_ranked_by_total_number_sold
     load_data
     result_1 = @se.item_repository.most_items(1)[0].id
+    result_2 = @se.item_repository.most_items(3).count
     assert_equal 63, result_1
+    assert_equal 3, result_2
   end
 
   private

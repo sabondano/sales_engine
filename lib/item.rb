@@ -29,56 +29,25 @@ class Item
     @merchant ||= @repository.find_merchant(merchant_id)
   end
 
-  # def revenue
-  #   invoices = invoice_items.map { |i| i.invoice }.uniq
-  #   transactions = invoices.map { |i| i.transactions }.flatten
-  #   successful_transactions = transactions.select { |t| t.result == "success" }
-  #   successful_invoices = successful_transactions.map { |t| t.invoice }.uniq
-  #   successful_invoice_items = successful_invoices.map { |i| i.invoice_items }.flatten
-  #   successful_invoice_items.inject(0) do |revenue, invoice_item|
-  #     revenue + (invoice_item.quantity * invoice_item.unit_price)
-  #   end
-  # end
-
-  # def revenue
-  #   @revenue ||= successful_invoice_items.inject(0) do |revenue, invoice_item|
-  #     revenue + (invoice_item.quantity * invoice_item.unit_price)
-  #   end
-  # end
-
-  # def units_sold
-  #   @units_sold ||= successful_invoice_items.inject(0) do |units_sold, invoice_item|
-  #     units_sold + invoice_item.quantity
-  #   end
-  # end
-
   def revenue
-    calculate_revenue_by_item(id)
+    @revenue ||= successful_invoice_items.inject(0) do |revenue, invoice_item|
+      revenue + (invoice_item.quantity * invoice_item.unit_price)
+    end
+  end
+
+  def units_sold
+    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, invoice_item|
+      units_sold + invoice_item.quantity
+    end
   end
 
   private
 
-  def calculate_revenue_by_item(id)
-
+  def successful_invoice_items
+    invoice_items.select(&:successful?)
   end
 
-  # def successful_invoice_items
-  #   successful_invoices.map { |i| i.invoice_items }.flatten
-  # end
-  #
-  # def invoices
-  #   invoice_items.map { |invoice_item| invoice_item.invoice }.uniq
-  # end
-  #
-  # def transactions
-  #   invoices.map { |i| i.transactions }.flatten
-  # end
-  #
-  # def successful_transactions
-  #   transactions.select { |t| t.result == "success" }
-  # end
-  #
-  # def successful_invoices
-  #   successful_transactions.map { |t| t.invoice }
-  # end
+  def invoices
+    invoice_items.map { |invoice_item| invoice_item.invoice }.uniq
+  end
 end
