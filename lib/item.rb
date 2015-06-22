@@ -58,8 +58,8 @@ class Item
 
   private
 
-  def calculate_revenue_from_invoice_items(id)
-    
+  def calculate_revenue_by_item(id)
+
   end
 
   # def successful_invoice_items
