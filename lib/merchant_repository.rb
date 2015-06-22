@@ -87,4 +87,34 @@ class MerchantRepository
   def find_customer(id)
     sales_engine.find_customer_by_customer_id(id)
   end
+
+  def revenue(date)
+    calculate_revenue(date)
+  end
+
+  def calculate_revenue(date)
+    successful_invoices_for_date(date).inject(0) do |revenue, invoice|
+      revenue + invoice.total
+    end
+  end
+
+  private
+
+  def invoices_for_date(date)
+    sales_engine.find_invoices_by_date(date)
+  end
+
+  def transactions_for_date(date)
+    invoices_for_date(date).map(&:transactions).flatten
+  end
+
+  def successful_transactions_for_date(date)
+    transactions_for_date(date).select do |transaction|
+      transaction.result == "success"
+    end
+  end
+
+  def successful_invoices_for_date(date)
+    successful_transactions_for_date(date).map(&:invoice)
+  end
 end

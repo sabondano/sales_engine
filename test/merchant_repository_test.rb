@@ -89,6 +89,13 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 20, result_3
   end
 
+  def test_revenue_date_returns_the_total_revenue_for_that_date_across_all_merchants
+    load_data
+    date = Date.parse "24 Mar 2012"
+    result_1 = @se.merchant_repository.revenue(date)
+    assert_equal BigDecimal.new("2000.00"), result_1
+  end
+
   private
 
   def fixture_path(file_name)
@@ -108,9 +115,9 @@ class MerchantRepositoryTest < Minitest::Test
       ],
 
       invoices: [
-        {id: 1, merchant_id: 10},
-        {id: 2, merchant_id: 20},
-        {id: 3, merchant_id: 30}
+        {id: 1, merchant_id: 10, created_at: "2012-03-24"},
+        {id: 2, merchant_id: 20, created_at: "2012-03-25"},
+        {id: 3, merchant_id: 30, created_at: "2012-03-24"}
       ],
 
       invoice_items: [
