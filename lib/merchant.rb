@@ -45,17 +45,30 @@ class Merchant
       value
     end
     @repository.find_customer(customer_id)
+  end
 
+  def unsuccessful_invoices
+    invoices.reject do |invoice|
+      invoice.transactions.any? do |transaction|
+        transaction.successful?
+      end
+    end.flatten
+  end
+
+  def customers_with_pending_invoices
+    unsuccessful_invoices.map do |invoice|
+      invoice.customer
+    end
   end
 
   private
 
   def successful_invoices(invoices)
-    successful_transactions(invoices).select { |t| t.result == "success" }.
+    transactions(invoices).select { |t| t.result == "success" }.
       map(&:invoice)
   end
 
-  def successful_transactions(invoices)
+  def transactions(invoices)
     invoices.map(&:transactions).flatten
   end
 
