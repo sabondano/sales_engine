@@ -1,5 +1,7 @@
 require_relative 'test_helper'
 require './lib/merchant'
+require './lib/sales_engine'
+require './lib/merchant_repository'
 
 class MerchantTest < Minitest::Test
 
@@ -50,10 +52,46 @@ class MerchantTest < Minitest::Test
     assert_equal "Joey", result.first_name
   end
 
+  def test_customers_with_pending_invoices_returns_collection_of_customers_with_unpaid_invoices
+    load_data
+    result = @se.merchant_repository.merchants[2].customers_with_pending_invoices
+    assert_equal 0, result.count
+  end
+
   private
 
   def fixtures_directory
     File.expand_path('../../data/fixtures', __FILE__)
   end
 
+  def load_data
+    repo_data = {
+      merchants: [
+       { id: 10, name: "merchant_1" },
+       { id: 20, name: "merchant_2" },
+       { id: 30, name: "merchant_3" }
+     ],
+
+       invoices: [
+         { id: 1, merchant_id: 10, customer_id: 100, created_at: "2012-03-24" },
+         { id: 2, merchant_id: 20, customer_id: 100, created_at: "2012-03-24" },
+         { id: 3, merchant_id: 30, customer_id: 200, created_at: "2012-03-24" },
+         { id: 4, merchant_id: 30, customer_id: 300, created_at: "2012-03-24" }
+       ],
+       transactions: [
+       { id: 6, invoice_id: 1, result: "failed" },
+       { id: 7, invoice_id: 2, result: "failed" },
+       { id: 8, invoice_id: 3, result: "success" },
+       { id: 9, invoice_id: 4, result: "failed" },
+       { id: 0, invoice_id: 4, result: "success" }
+     ],
+      customers: [
+        { id: 100, first_name: "Bob"},
+        { id: 200, first_name: "Sebastian"},
+        { id: 300, first_name: "Marla"}
+      ]
+    }
+    @se = SalesEngine.new("fake_path")
+    @se.init_repos(repo_data)
+  end
 end
