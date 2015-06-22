@@ -81,8 +81,8 @@ class InvoiceRepository
   end
 
   def find_all_by_created_at(created_at)
-    invoices.find_all do |invoice|
-      invoice.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
+    invoices.find_all do |i|
+      i.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
     end
   end
 
