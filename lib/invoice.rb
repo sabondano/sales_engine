@@ -6,7 +6,7 @@ class Invoice
     @customer_id = data[:customer_id].to_i
     @merchant_id = data[:merchant_id].to_i
     @status      = data[:status]
-    @created_at  = data[:created_at]
+    @created_at  = Date.parse data[:created_at]
     @updated_at  = data[:updated_at]
     @repository  = repository
   end
@@ -30,6 +30,12 @@ class Invoice
   def items
     invoice_items.map do |invoice_item|
       invoice_item.item
+    end
+  end
+
+  def total
+    invoice_items.inject(0) do |total, invoice_item|
+      total + (invoice_item.quantity * invoice_item.unit_price)
     end
   end
 end

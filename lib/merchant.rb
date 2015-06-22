@@ -70,7 +70,7 @@ class Merchant
   end
 
   def find_invoices_by_date(date)
-    invoices.select { |i| Date.parse(i.created_at) == date }
+    invoices.select { |i| i.created_at == date }
   end
 
   def count_items_sold
