@@ -101,4 +101,8 @@ class SalesEngine
   def find_invoices_by_date(date)
     invoice_repository.find_all_by_created_at(date)
   end
+
+  def create_invoice_items(items, new_invoice_id)
+    invoice_item_repository.create_invoice_items(items, new_invoice_id)
+  end
 end
