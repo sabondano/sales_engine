@@ -17,7 +17,7 @@ class Item
     @unit_price  = BigDecimal.new(data[:unit_price])/100
     @merchant_id = data[:merchant_id].to_i
     @created_at  = Date.parse(data[:created_at])
-    @updated_at  = Date.parse(data[:created_at])
+    @updated_at  = Date.parse(data[:updated_at])
     @repository  = repository
   end
 
@@ -41,9 +41,29 @@ class Item
     end
   end
 
+  def best_day
+    days_and_revenues.max_by { |k, v| v }[0]
+  end
+
+
   private
 
   def successful_invoice_items
     invoice_items.select(&:successful?)
   end
+
+  def successful_invoices
+    successful_invoice_items.flat_map { |it| it.invoice }
+  end
+
+  def invoices_grouped_by_date
+    successful_invoices.group_by { |i| i.created_at }
+  end
+
+  def days_and_revenues
+    invoices_grouped_by_date.map do |k, v|
+      [k, v.inject(0) { |revenue, invoice| revenue + invoice.total }]
+    end.to_h
+  end
+
 end

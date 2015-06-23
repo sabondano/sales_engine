@@ -41,10 +41,45 @@ class ItemTest < Minitest::Test
     assert_equal 'Schroeder-Jerde', result_1.name
   end
 
+  def test_best_day_returns_date_with_the_most_sales_for_given_item_using_the_invoice_date
+    load_data
+    result_1 = @se.item_repository.items[0].best_day
+
+    assert_equal Date.parse("Jun 30, 2015"), result_1
+  end
   private
 
   def fixtures_directory
-    File.expand_path('../../data/fixtures', __FILE__)
+    File.expand_path('../../data/fixtures',__FILE__)
+  end
+
+  def load_data
+    repo_data = {
+        items: [
+            { id: 1, unit_price: 5_000, created_at: "Jan, 15, 2015", updated_at: "Jan, 15, 2015" },
+        ],
+
+        invoices: [
+            { id: 10, created_at: "June 1, 2015" },
+            { id: 20, created_at: "June 15, 2015" },
+            { id: 30, created_at: "June 30, 2015" }
+        ],
+
+        invoice_items: [
+            { id: 100, item_id: 1, invoice_id: 10, quantity: 1_000, unit_price: 5_000 },
+            { id: 200, item_id: 1, invoice_id: 20, quantity: 2_000, unit_price: 55_000 },
+            { id: 300, item_id: 1, invoice_id: 30, quantity: 3_000, unit_price: 555_000 }
+        ],
+
+        transactions: [
+            { id: 7, invoice_id: 10, result: "success"},
+            { id: 8, invoice_id: 20, result: "success"},
+            { id: 9, invoice_id: 30, result: "success"}
+        ]
+    }
+
+    @se = SalesEngine.new("fake_path")
+    @se.init_repos(repo_data)
   end
 end
 
