@@ -39,6 +39,12 @@ class Invoice
     end
   end
 
+  def successful?
+    transactions.any? do |transaction|
+      transaction.successful?
+    end
+  end
+
   def total
     invoice_items.inject(0) do |total, invoice_item|
       total + (invoice_item.quantity * invoice_item.unit_price)

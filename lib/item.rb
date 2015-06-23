@@ -16,8 +16,8 @@ class Item
     @description = data[:description]
     @unit_price  = BigDecimal.new(data[:unit_price])/100
     @merchant_id = data[:merchant_id].to_i
-    @created_at  = DateTime.strptime(data[:created_at], '%Y-%m-%d %H:%M:%S %Z')
-    @updated_at  = DateTime.strptime(data[:updated_at], '%Y-%m-%d %H:%M:%S %Z')
+    @created_at  = Date.parse(data[:created_at])
+    @updated_at  = Date.parse(data[:created_at])
     @repository  = repository
   end
 
@@ -27,5 +27,23 @@ class Item
 
   def merchant
     @merchant ||= @repository.find_merchant(merchant_id)
+  end
+
+  def revenue
+    @revenue ||= successful_invoice_items.inject(0) do |revenue, invoice_item|
+      revenue + (invoice_item.quantity * invoice_item.unit_price)
+    end
+  end
+
+  def units_sold
+    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, invoice_item|
+      units_sold + invoice_item.quantity
+    end
+  end
+
+  private
+
+  def successful_invoice_items
+    invoice_items.select(&:successful?)
   end
 end
