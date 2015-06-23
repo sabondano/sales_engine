@@ -59,9 +59,28 @@ class InvoiceTest < Minitest::Test
     assert_equal 7, result.count
   end
 
+  def test_charge_creates_new_transaction
+    load_data
+    invoice = @se.invoice_repository.invoices[0]
+    prior_transaction_count = invoice.transactions.count
+    invoice.charge(credit_card_number: '1111222233334444',  credit_card_expiration_date: "10/14", result: "success")
+
+    assert_equal prior_transaction_count.next, invoice.transactions.count
+  end
+
   private
 
   def fixtures_directory
     File.expand_path('../../data/fixtures', __FILE__)
+  end
+
+  def load_data
+    repo_data = {
+        invoices: [
+          {id: 1, created_at: "Jun 5, 2015"}
+        ]
+    }
+    @se = SalesEngine.new("fake_path")
+    @se.init_repos(repo_data)
   end
 end

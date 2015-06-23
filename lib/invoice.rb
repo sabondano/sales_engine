@@ -18,7 +18,7 @@ class Invoice
   end
 
   def transactions
-    @transactions ||= @repository.find_transactions(id)
+    @repository.find_transactions(id)
   end
 
   def invoice_items
@@ -49,5 +49,9 @@ class Invoice
     invoice_items.inject(0) do |total, invoice_item|
       total + (invoice_item.quantity * invoice_item.unit_price)
     end
+  end
+
+  def charge(payment_data)
+    repository.charge(payment_data, id)
   end
 end

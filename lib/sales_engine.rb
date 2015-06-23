@@ -52,8 +52,8 @@ class SalesEngine
     invoice_repository.find_all_by_merchant_id(id)
   end
 
-  def find_transactions_by_invoice_id(id)
-    transaction_repository.find_all_by_invoice_id(id)
+  def find_transactions_by_invoice_id(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id)
   end
 
   def find_invoice_items_by_invoice_id(id)
@@ -104,5 +104,9 @@ class SalesEngine
 
   def create_invoice_items(items, new_invoice_id)
     invoice_item_repository.create_invoice_items(items, new_invoice_id)
+  end
+
+  def charge(payment_data, invoice_id)
+    transaction_repository.charge(payment_data, invoice_id)
   end
 end
