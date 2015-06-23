@@ -1,4 +1,3 @@
-require 'pry'
 class Customer
   attr_reader :created_at,
               :last_name,
