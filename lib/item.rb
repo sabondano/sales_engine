@@ -46,8 +46,4 @@ class Item
   def successful_invoice_items
     invoice_items.select(&:successful?)
   end
-
-  def invoices
-    invoice_items.map { |invoice_item| invoice_item.invoice }.uniq
-  end
 end
