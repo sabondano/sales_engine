@@ -111,4 +111,33 @@ class InvoiceRepository
   def find_items(invoice_id)
     sales_engine.find_items_by_invoice_id(invoice_id)
   end
+
+  def create(invoice_data)
+    customer = invoice_data[:customer]
+    merchant = invoice_data[:merchant]
+    status = invoice_data[:status]
+    items = invoice_data[:items]
+    new_invoice = Invoice.new({id: next_invoice_id,
+                               customer_id: customer.id,
+                               merchant_id: merchant.id,
+                               status: status,
+                               created_at: Time.now.strftime("%c %d, %Y"),
+                               updated_at: Time.now.strftime("%c %d, %Y")},
+                              self
+    )
+
+    invoices << new_invoice
+    sales_engine.create_invoice_items(items, new_invoice.id)
+    new_invoice
+  end
+
+  private
+
+  def next_invoice_id
+    if invoices.last.nil?
+      1
+    else
+      invoices.last.id.next
+    end
+  end
 end

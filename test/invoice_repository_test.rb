@@ -101,9 +101,42 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 0, result2.length
   end
 
+  def test_create_creates_a_new_invoice
+    load_data
+    new_invoice = @se.invoice_repository.create(
+      customer: @se.customer_repository.customers[0],
+      merchant: @se.merchant_repository.merchants[0],
+      status: "shipped",
+      items: [@se.item_repository.items[0],
+              @se.item_repository.items[0],
+              @se.item_repository.items[1]]
+    )
+    assert_equal 1, new_invoice.customer_id
+    assert_equal 100, new_invoice.merchant_id
+  end
+
   private
 
   def fixtures_directory
     File.expand_path('../../data/fixtures', __FILE__)
+  end
+
+  def load_data
+    repo_data = {
+        items: [
+            {id: 10, name: "cookie", unit_price: 10, created_at: "Jun 5, 2015", updated_at: "Jun 5, 2015" },
+            {id: 50, name: "potato", unit_price: 5, created_at: "Jun 5, 2015", updated_at: "Jun 5, 2015" }
+        ],
+
+        customers: [
+            {id: 1}
+        ],
+
+        merchants: [
+            {id: 100}
+        ]
+    }
+    @se = SalesEngine.new("fake_path")
+    @se.init_repos(repo_data)
   end
 end
