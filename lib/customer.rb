@@ -18,4 +18,30 @@ class Customer
   def invoices
     @invoices ||= @repository.find_invoices(id)
   end
+
+  def transactions
+    invoices.flat_map(&:transactions)
+  end
+
+  def favorite_merchant
+    successful_grouped_merchants.max_by(&:count).first
+  end
+
+  private
+
+  def successful_transactions
+    transactions.select { |t| t.successful? }
+  end
+
+  def successful_invoices
+    successful_transactions.map { |successful_trans| successful_trans.invoice }
+  end
+
+  def successful_merchants
+    successful_invoices.map(&:merchant).compact
+  end
+
+  def successful_grouped_merchants
+    successful_merchants.group_by { |merchant| merchant.id }.values
+  end
 end
