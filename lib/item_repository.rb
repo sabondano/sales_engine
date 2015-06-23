@@ -41,11 +41,15 @@ class ItemRepository
   end
 
   def find_by_created_at(created_at)
-    items.find { |item| item.created_at == created_at }
+    items.find do |item|
+      item.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
+    end
   end
 
   def find_by_updated_at(updated_at)
-    items.find { |item| item.updated_at == updated_at }
+    items.find do |item|
+      item.updated_at.strftime("%c %d, %Y") == updated_at.strftime("%c %d, %Y")
+    end
   end
 
   def find_all_by_id(id)
@@ -69,11 +73,15 @@ class ItemRepository
   end
 
   def find_all_by_created_at(created_at)
-    items.find_all { |item| item.created_at == created_at }
+    items.find_all do |item|
+      item.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
+    end
   end
 
   def find_all_by_updated_at(updated_at)
-    items.find_all { |item| item.updated_at == updated_at }
+    items.find_all do |item|
+      item.updated_at.strftime("%c %d, %Y") == updated_at.strftime("%c %d, %Y")
+    end
   end
 
   def find_invoice_items(id)
@@ -82,5 +90,13 @@ class ItemRepository
 
   def find_merchant(merchant_id)
     sales_engine.find_merchant_by_merchant_id(merchant_id)
+  end
+
+  def most_revenue(x)
+    items.sort_by(&:revenue).reverse.first(x)
+  end
+
+  def most_items(x)
+    items.sort_by(&:units_sold).reverse.first(x)
   end
 end
