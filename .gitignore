@@ -2,7 +2,7 @@
 *.rbc
 *.html
 /.config
-/coverage/
+/test/coverage/
 /InstalledFiles
 /pkg/
 /spec/reports/
