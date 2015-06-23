@@ -1,3 +1,4 @@
+require 'pry'
 class Customer
   attr_reader :created_at,
               :last_name,
@@ -25,14 +26,9 @@ class Customer
 
   def favorite_merchant
     successful_transactions = transactions.select { |t| t.result == "success" }
-
     successful_invoices = successful_transactions.map { |st| st.invoice}
-
-    # successful_merchants = successful_invoices.map { |si| si.merchant}
     successful_merchants = successful_invoices.map(&:merchant).compact
-    binding.pry
     grouped_merchants = successful_merchants.group_by { |merchant| merchant.id }.values
-    # binding.pry
     grouped_merchants.max_by(&:count).first
   end
 end
