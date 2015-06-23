@@ -131,6 +131,10 @@ class InvoiceRepository
     new_invoice
   end
 
+  def charge(payment_data, id)
+    sales_engine.charge(payment_data, id)
+  end
+
   private
 
   def next_invoice_id
