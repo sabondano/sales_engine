@@ -50,8 +50,6 @@ class Merchant
 
   def customers_with_pending_invoices
     unsuccessful_invoices.map(&:customer)
-    #   invoice.customer
-    # end
   end
 
   private

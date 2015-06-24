@@ -3,7 +3,7 @@ class CustomerRepository
               :customers
 
   def initialize(data, sales_engine)
-    @customers = data.map { |attributes| Customer.new(attributes, self) }
+    @customers    = data.map { |attributes| Customer.new(attributes, self) }
     @sales_engine = sales_engine
   end
 

@@ -4,7 +4,7 @@ class InvoiceItemRepository
 
   def initialize(data, sales_engine)
     @invoice_items = data.map { |attributes| InvoiceItem.new(attributes, self) }
-    @sales_engine = sales_engine
+    @sales_engine  = sales_engine
   end
 
   def inspect

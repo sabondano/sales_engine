@@ -3,7 +3,7 @@ class MerchantRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @merchants = data.map { |attributes| Merchant.new(attributes, self) }
+    @merchants    = data.map { |attributes| Merchant.new(attributes, self) }
     @sales_engine = sales_engine
   end
 
@@ -92,7 +92,7 @@ class MerchantRepository
   end
 
   def successful_transactions_for_date(date)
-    transactions_for_date(date).select do |transaction| 
+    transactions_for_date(date).select do |transaction|
       transaction.result == "success"
     end
   end

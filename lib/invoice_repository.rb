@@ -3,7 +3,7 @@ class InvoiceRepository
               :sales_engine
 
   def initialize(data, sales_engine)
-    @invoices = data.map { |attributes| Invoice.new(attributes, self) }
+    @invoices     = data.map { |attributes| Invoice.new(attributes, self) }
     @sales_engine = sales_engine
   end
 
