@@ -20,15 +20,11 @@ class TransactionRepository
   end
 
   def find_by_id(id)
-    transactions.find do |transaction|
-      transaction.id == id
-    end
+    transactions.find { |transaction| transaction.id == id }
   end
 
   def find_by_invoice_id(invoice_id)
-    transactions.find do |transaction|
-      transaction.invoice_id == invoice_id
-    end
+    transactions.find { |transaction| transaction.invoice_id == invoice_id }
   end
 
   def find_by_credit_card_number(credit_card_number)
@@ -60,9 +56,7 @@ class TransactionRepository
   end
 
   def find_all_by_invoice_id(invoice_id)
-    transactions.select do |transaction|
-      transaction.invoice_id == invoice_id
-    end
+    transactions.select { |transaction| transaction.invoice_id == invoice_id }
   end
 
   def find_all_by_credit_card_number(credit_card_number)
