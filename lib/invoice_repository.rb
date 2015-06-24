@@ -101,8 +101,7 @@ class InvoiceRepository
                                created_at: Time.now.strftime("%c %d, %Y"),
                                updated_at: Time.now.strftime("%c %d, %Y")},
                               self
-    )
-
+                              )
     invoices << new_invoice
     sales_engine.create_invoice_items(items, new_invoice.id)
     new_invoice

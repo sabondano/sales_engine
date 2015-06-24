@@ -45,7 +45,6 @@ class Item
     days_and_revenues.max_by { |k, v| v }[0]
   end
 
-
   private
 
   def successful_invoice_items
@@ -65,5 +64,4 @@ class Item
       [k, v.inject(0) { |revenue, invoice| revenue + invoice.total }]
     end.to_h
   end
-
 end
