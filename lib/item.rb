@@ -36,8 +36,8 @@ class Item
   end
 
   def units_sold
-    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, invoice_item|
-      units_sold + invoice_item.quantity
+    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, inv_item|
+      units_sold + inv_item.quantity
     end
   end
 
@@ -45,11 +45,10 @@ class Item
     days_and_revenues.max_by { |k, v| v }[0]
   end
 
-
   private
 
   def successful_invoice_items
-    invoice_items.select(&:successful?)
+    @successful_invoice_items ||= invoice_items.select(&:successful?)
   end
 
   def successful_invoices
@@ -65,5 +64,4 @@ class Item
       [k, v.inject(0) { |revenue, invoice| revenue + invoice.total }]
     end.to_h
   end
-
 end

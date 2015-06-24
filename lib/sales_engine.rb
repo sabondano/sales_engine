@@ -36,12 +36,18 @@ class SalesEngine
   end
 
   def init_repos(repo_data)
-    @merchant_repository     = MerchantRepository.new(repo_data.fetch(:merchants, []), self)
-    @customer_repository     = CustomerRepository.new(repo_data.fetch(:customers, []), self)
-    @transaction_repository  = TransactionRepository.new(repo_data.fetch(:transactions, []), self)
-    @invoice_item_repository = InvoiceItemRepository.new(repo_data.fetch(:invoice_items, []), self)
-    @item_repository         = ItemRepository.new(repo_data.fetch(:items, []), self)
-    @invoice_repository      = InvoiceRepository.new(repo_data.fetch(:invoices, []), self)
+    @merchant_repository     = MerchantRepository.
+                                new(repo_data.fetch(:merchants, []), self)
+    @customer_repository     = CustomerRepository.
+                                new(repo_data.fetch(:customers, []), self)
+    @transaction_repository  = TransactionRepository.
+                                new(repo_data.fetch(:transactions, []), self)
+    @invoice_item_repository = InvoiceItemRepository.
+                                new(repo_data.fetch(:invoice_items, []), self)
+    @item_repository         = ItemRepository.
+                                new(repo_data.fetch(:items, []), self)
+    @invoice_repository      = InvoiceRepository.
+                                new(repo_data.fetch(:invoices, []), self)
   end
 
   def find_items_by_merchant_id(id)

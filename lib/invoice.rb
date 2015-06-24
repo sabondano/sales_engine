@@ -8,7 +8,7 @@ class Invoice
               :repository
 
   def initialize(data, repository)
-    @id = data[:id].to_i
+    @id          = data[:id].to_i
     @customer_id = data[:customer_id].to_i
     @merchant_id = data[:merchant_id].to_i
     @status      = data[:status]
@@ -34,15 +34,11 @@ class Invoice
   end
 
   def items
-    invoice_items.map do |invoice_item|
-      invoice_item.item
-    end
+    invoice_items.map { |invoice_item| invoice_item.item }
   end
 
   def successful?
-    transactions.any? do |transaction|
-      transaction.successful?
-    end
+    transactions.any? { |transaction| transaction.successful? }
   end
 
   def total

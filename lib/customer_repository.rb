@@ -3,7 +3,7 @@ class CustomerRepository
               :customers
 
   def initialize(data, sales_engine)
-    @customers = data.map { |attributes| Customer.new(attributes, self) }
+    @customers    = data.map { |attributes| Customer.new(attributes, self) }
     @sales_engine = sales_engine
   end
 
@@ -20,16 +20,14 @@ class CustomerRepository
   end
 
   def find_by_id(id)
-    customers.find do |customer|
-      customer.id == id
-    end
+    customers.find { |customer| customer.id == id }
   end
 
   def find_by_first_name(first_name)
     customers.find do |customer|
       customer.first_name.downcase == first_name.downcase
     end
-    end
+  end
 
   def find_by_last_name(last_name)
     customers.find do |customer|
@@ -38,45 +36,35 @@ class CustomerRepository
   end
 
   def find_by_created_at(created_at)
-    customers.find do |customer|
-      customer.created_at == created_at
-    end
+    customers.find { |customer| customer.created_at == created_at }
   end
 
   def find_by_updated_at(updated_at)
-    customers.find do |customer|
-      customer.updated_at == updated_at
-    end
+    customers.find { |customer| customer.updated_at == updated_at }
   end
 
   def find_all_by_id(id)
-    customers.find_all do |customer|
-      customer.id == id
-    end
+    customers.select { |customer| customer.id == id }
   end
 
   def find_all_by_first_name(first_name)
-    customers.find_all do |customer|
+    customers.select do |customer|
       customer.first_name.downcase == first_name.downcase
     end
   end
 
   def find_all_by_last_name(last_name)
-    customers.find_all do |customer|
+    customers.select do |customer|
       customer.last_name.downcase == last_name.downcase
     end
   end
 
   def find_all_by_created_at(created_at)
-    customers.find_all do |customer|
-      customer.created_at == created_at
-    end
+    customers.select { |customer| customer.created_at == created_at }
   end
 
   def find_all_by_updated_at(updated_at)
-    customers.find_all do |customer|
-      customer.updated_at == updated_at
-    end
+    customers.select { |customer| customer.updated_at == updated_at }
   end
 
   def find_invoices(id)
