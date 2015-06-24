@@ -20,15 +20,11 @@ class TransactionRepository
   end
 
   def find_by_id(id)
-    transactions.find do |transaction|
-      transaction.id == id
-    end
+    transactions.find { |transaction| transaction.id == id }
   end
 
   def find_by_invoice_id(invoice_id)
-    transactions.find do |transaction|
-      transaction.invoice_id == invoice_id
-    end
+    transactions.find { |transaction| transaction.invoice_id == invoice_id }
   end
 
   def find_by_credit_card_number(credit_card_number)
@@ -44,63 +40,47 @@ class TransactionRepository
   end
 
   def find_by_result(result)
-    transactions.find do |transaction|
-      transaction.result == result
-    end
+    transactions.find { |transaction| transaction.result == result }
   end
 
   def find_by_created_at(created_at)
-    transactions.find do |transaction|
-      transaction.created_at == created_at
-    end
+    transactions.find { |transaction| transaction.created_at == created_at }
   end
 
   def find_by_updated_at(updated_at)
-    transactions.find do |transaction|
-      transaction.updated_at == updated_at
-    end
+    transactions.find { |transaction| transaction.updated_at == updated_at }
   end
 
   def find_all_by_id(id)
-    transactions.find_all do |transaction|
-      transaction.id == id
-    end
+    transactions.select { |transaction| transaction.id == id }
   end
 
   def find_all_by_invoice_id(invoice_id)
-    transactions.find_all do |transaction|
-      transaction.invoice_id == invoice_id
-    end
+    transactions.select { |transaction| transaction.invoice_id == invoice_id }
   end
 
   def find_all_by_credit_card_number(credit_card_number)
-    transactions.find_all do |transaction|
+    transactions.select do |transaction|
       transaction.credit_card_number == credit_card_number
     end
   end
 
   def find_all_by_credit_card_expiration_date(credit_card_expiration_date)
-    transactions.find_all do |transaction|
+    transactions.select do |transaction|
       transaction.credit_card_expiration_date == credit_card_expiration_date
     end
   end
 
   def find_all_by_result(result)
-    transactions.find_all do |transaction|
-      transaction.result == result
-    end
+    transactions.select { |transaction| transaction.result == result }
   end
 
   def find_all_by_created_at(created_at)
-    transactions.find_all do |transaction|
-      transaction.created_at == created_at
-    end
+    transactions.select { |transaction| transaction.created_at == created_at }
   end
 
   def find_all_by_updated_at(updated_at)
-    transactions.find_all do |transaction|
-      transaction.updated_at == updated_at
-    end
+    transactions.select { |transaction| transaction.updated_at == updated_at }
   end
 
   def find_invoice(invoice_id)
