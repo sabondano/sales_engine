@@ -1,5 +1,4 @@
 class MerchantRepository
-
   attr_reader :merchants,
               :sales_engine
 
@@ -21,51 +20,35 @@ class MerchantRepository
   end
 
   def find_by_id(id)
-    merchants.find do |merchant|
-      merchant.id == id
-    end
+    merchants.find { |merchant| merchant.id == id }
   end
 
   def find_by_name(name)
-    merchants.find do |merchant|
-      merchant.name == name
-    end
+    merchants.find { |merchant| merchant.name == name }
   end
 
   def find_by_created_at(created_at)
-    merchants.find do |merchant|
-      merchant.created_at == created_at
-    end
+    merchants.find {|merchant| merchant.created_at == created_at}
   end
 
   def find_by_updated_at(updated_at)
-    merchants.find do |merchant|
-      merchant.updated_at == updated_at
-    end
+    merchants.find { |merchant| merchant.updated_at == updated_at }
   end
 
   def find_all_by_id(id)
-    merchants.find_all do |merchant|
-      merchant.id == id
-    end
+    merchants.select { |merchant| merchant.id == id }
   end
 
   def find_all_by_name(name)
-    merchants.find_all do |merchant|
-      merchant.name == name
-    end
+    merchants.select { |merchant| merchant.name == name }
   end
 
   def find_all_by_created_at(created_at)
-    merchants.find_all do |merchant|
-      merchant.created_at == created_at
-    end
+    merchants.select { |merchant| merchant.created_at == created_at }
   end
 
   def find_all_by_updated_at(updated_at)
-    merchants.find_all do |merchant|
-      merchant.updated_at == updated_at
-    end
+    merchants.select { |merchant| merchant.updated_at == updated_at }
   end
 
   def find_items(id)

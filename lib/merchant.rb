@@ -64,7 +64,7 @@ class Merchant
   private
 
   def successful_invoices(invoices)
-    transactions(invoices).select { |t| t.result == "success" }.
+    transactions(invoices).select { |t| t.successful? }.
       map(&:invoice)
   end
 

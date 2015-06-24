@@ -1,5 +1,4 @@
 class InvoiceRepository
-
   attr_reader :invoices,
               :sales_engine
 
@@ -21,75 +20,53 @@ class InvoiceRepository
   end
 
   def find_by_id(id)
-    invoices.find do |invoice|
-      invoice.id == id
-    end
+    invoices.find { |invoice| invoice.id == id }
   end
 
   def find_by_customer_id(customer_id)
-    invoices.find do |invoice|
-      invoice.customer_id == customer_id
-    end
+    invoices.find { |invoice| invoice.customer_id == customer_id }
   end
 
   def find_by_merchant_id(merchant_id)
-    invoices.find do |invoice|
-      invoice.merchant_id == merchant_id
-    end
+    invoices.find { |invoice| invoice.merchant_id == merchant_id }
   end
 
   def find_by_status(status)
-    invoices.find do |invoice|
-      invoice.status == status
-    end
+    invoices.find { |invoice| invoice.status == status }
   end
 
   def find_by_created_at(created_at)
-    invoices.find do |invoice|
-      invoice.created_at == created_at
-    end
+    invoices.find { |invoice| invoice.created_at == created_at }
   end
 
   def find_by_updated_at(updated_at)
-    invoices.find do |invoice|
-      invoice.updated_at == updated_at
-    end
+    invoices.find { |invoice| invoice.updated_at == updated_at }
   end
 
   def find_all_by_id(id)
-    invoices.find_all do |invoice|
-      invoice.id == id
-    end
+    invoices.select { |invoice| invoice.id == id }
   end
 
   def find_all_by_customer_id(customer_id)
-    invoices.find_all do |invoice|
-      invoice.customer_id == customer_id
-    end
+    invoices.select { |invoice| invoice.customer_id == customer_id }
   end
 
   def find_all_by_merchant_id(merchant_id)
-    invoices.find_all do |invoice|
-      invoice.merchant_id == merchant_id
-    end
+    invoices.select { |invoice| invoice.merchant_id == merchant_id }
   end
 
   def find_all_by_status(status)
-    invoices.find_all do |invoice|
-      invoice.status == status
-    end
+    invoices.select { |invoice| invoice.status == status }
   end
 
   def find_all_by_created_at(created_at)
-    invoices.find_all do |i|
+    invoices.select do |i|
       i.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
     end
   end
 
   def find_all_by_updated_at(updated_at)
-    invoices.find_all do |invoice|
-      invoice.updated_at == updated_at
-    end
+    invoices.select { |invoice| invoice.updated_at == updated_at }
   end
 
   def find_transactions(id)

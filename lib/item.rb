@@ -36,8 +36,8 @@ class Item
   end
 
   def units_sold
-    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, invoice_item|
-      units_sold + invoice_item.quantity
+    @units_sold ||= successful_invoice_items.inject(0) do |units_sold, inv_item|
+      units_sold + inv_item.quantity
     end
   end
 
@@ -49,7 +49,7 @@ class Item
   private
 
   def successful_invoice_items
-    invoice_items.select(&:successful?)
+    @successful_invoice_items ||= invoice_items.select(&:successful?)
   end
 
   def successful_invoices

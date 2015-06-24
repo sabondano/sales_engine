@@ -53,33 +53,33 @@ class ItemRepository
   end
 
   def find_all_by_id(id)
-    items.find_all { |item| item.id == id }
+    items.select { |item| item.id == id }
   end
 
   def find_all_by_name(name)
-    items.find_all { |item| item.name.downcase == name.downcase }
+    items.select { |item| item.name.downcase == name.downcase }
   end
 
   def find_all_by_description(description)
-    items.find_all { |item| item.description.downcase == description.downcase }
+    items.select { |item| item.description.downcase == description.downcase }
   end
 
   def find_all_by_unit_price(unit_price)
-    items.find_all { |item| item.unit_price == unit_price }
+    items.select { |item| item.unit_price == unit_price }
   end
 
   def find_all_by_merchant_id(merchant_id)
-    items.find_all { |item| item.merchant_id == merchant_id }
+    items.select { |item| item.merchant_id == merchant_id }
   end
 
   def find_all_by_created_at(created_at)
-    items.find_all do |item|
+    items.select do |item|
       item.created_at.strftime("%c %d, %Y") == created_at.strftime("%c %d, %Y")
     end
   end
 
   def find_all_by_updated_at(updated_at)
-    items.find_all do |item|
+    items.select do |item|
       item.updated_at.strftime("%c %d, %Y") == updated_at.strftime("%c %d, %Y")
     end
   end
