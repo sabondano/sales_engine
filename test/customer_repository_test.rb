@@ -12,12 +12,20 @@ class CustomerRepositoryTest < Minitest::Test
     @customer_repository = engine.customer_repository
   end
 
+  def test_inspect_returns_a_string_with_class_and_rows
+    result = customer_repository.inspect
+    expected = "CustomerRepository 10 rows"
+    assert_equal expected, result
+  end
+
   def test_it_find_all_customers
     assert_equal 10, customer_repository.all.count
   end
 
   def test_it_has_a_random_method
-    assert customer_repository.respond_to?(:random)
+    customers = []
+    10.times { customers << customer_repository.random }
+    refute customers.uniq.length == 1
   end
 
   def test_it_finds_customers_by_id

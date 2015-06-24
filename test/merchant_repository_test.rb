@@ -12,6 +12,18 @@ class MerchantRepositoryTest < Minitest::Test
     @merchant_repository = engine.merchant_repository
   end
 
+  def test_inspect_returns_a_string_with_class_and_rows
+    result = merchant_repository.inspect
+    expected = "MerchantRepository 10 rows"
+    assert_equal expected, result
+  end
+
+  def test_random_returns_a_random_merchant
+    merchants = []
+    10.times { merchants << merchant_repository.random }
+    refute merchants.uniq.length == 1
+  end
+
   def test_it_finds_a_single_merchant
     assert_equal "Schroeder-Jerde", merchant_repository.find_by_id(1).name
   end

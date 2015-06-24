@@ -14,6 +14,12 @@ class TransactionRepositoryTest < Minitest::Test
     assert_equal SalesEngine, transaction_repository.sales_engine.class
   end
 
+  def test_inspect_returns_string_with_class_and_rows
+    result = transaction_repository.inspect
+    expected = "TransactionRepository 10 rows"
+    assert_equal expected, result
+  end
+
   def test_it_finds_all_transactions
     output = transaction_repository.all.count
     expected = 10
@@ -22,7 +28,9 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_finds_random_transaction
-    assert transaction_repository.respond_to?(:random)
+    transactions = []
+    10.times { transactions << transaction_repository.random }
+    refute transactions.uniq.length == 1
   end
 
   def test_has_transaction_instances
