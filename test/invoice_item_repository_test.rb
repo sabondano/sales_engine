@@ -12,8 +12,20 @@ class InvoiceItemRepositoryTest < Minitest::Test
     @invoice_item_repository = engine.invoice_item_repository
   end
 
+  def test_inspect_returns_string_with_class_and_rows
+    result = invoice_item_repository.inspect
+    expected = "InvoiceItemRepository 10 rows"
+    assert_equal expected, result
+  end
+
   def test_it_find_all_invoice_items
     assert_equal 10, invoice_item_repository.all.count
+  end
+
+  def test_random_returns_a_random_invoice_item
+    invoice_items = []
+    10.times { invoice_items << invoice_item_repository.random }
+    refute invoice_items.uniq.length == 1
   end
 
   def test_it_finds_a_single_invoice_item

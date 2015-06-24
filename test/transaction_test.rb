@@ -10,7 +10,7 @@ class TransactionTest < Minitest::Test
     @transaction_repository = engine.transaction_repository
   end
 
-  def transacton_has_an_id
+  def test_transacton_has_an_id
     data = { id: "1", invoice_id: "1", credit_card_number: "4654405418249632", credit_card_expiration_date: "10/13", result: "success", created_at: "2012-03-27 14:54:09 UTC", updated_at: "2012-03-27 14:54:09 UTC" }
     repository = "transaction repo"
 

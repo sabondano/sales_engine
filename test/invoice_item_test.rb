@@ -11,7 +11,7 @@ class InvoiceItemTest < Minitest::Test
     @invoice_item_repository = engine.invoice_item_repository
   end
 
-  def invoice_item_has_an_id
+  def test_invoice_item_has_an_id
     data = { id: "1", item_id: "539", invoice_id: "1", quantity: "5", unit_price: "13635", created_at: "2012-03-27 14:54:09 UTC", updated_at: "2012-03-27 14:54:09 UTC" }
     repository = "invoice_item repo"
 
