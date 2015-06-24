@@ -1,7 +1,6 @@
 require 'date'
 
 class Merchant
-
   attr_reader :name,
               :created_at,
               :updated_at,
@@ -37,11 +36,7 @@ class Merchant
   end
 
   def favorite_customer
-    @c = successful_customers.reduce(Hash.new(0)) do |hash, customer_id|
-      hash[customer_id] += 1
-      hash
-    end
-    customer_id, invoice_count = @c.max_by do |key, value|
+    customer_id, invoices = successful_customers_hash.max_by do |key, value|
       value
     end
     @repository.find_customer(customer_id)
@@ -49,31 +44,28 @@ class Merchant
 
   def unsuccessful_invoices
     invoices.reject do |invoice|
-      invoice.transactions.any? do |transaction|
-        transaction.successful?
-      end
+      invoice.transactions.any? { |transaction| transaction.successful? }
     end.flatten
   end
 
   def customers_with_pending_invoices
-    unsuccessful_invoices.map do |invoice|
-      invoice.customer
-    end
+    unsuccessful_invoices.map(&:customer)
+    #   invoice.customer
+    # end
   end
 
   private
 
   def successful_invoices(invoices)
-    transactions(invoices).select { |t| t.successful? }.
-      map(&:invoice)
+    transactions(invoices).select { |t| t.successful? }.map(&:invoice)
   end
 
   def transactions(invoices)
-    invoices.map(&:transactions).flatten
+    invoices.flat_map(&:transactions)
   end
 
   def successful_invoice_items(invoices)
-    successful_invoices(invoices).map(&:invoice_items).flatten
+    successful_invoices(invoices).flat_map(&:invoice_items)
   end
 
   def calculate_revenue_from_invoice_items(invoices)
@@ -93,8 +85,13 @@ class Merchant
   end
 
   def successful_customers
-    successful_invoices(invoices).map do |invoice|
-      invoice.customer_id
+    successful_invoices(invoices).map { |invoice| invoice.customer_id }
+  end
+
+  def successful_customers_hash
+    successful_customers.reduce(Hash.new(0)) do |hash, customer_id|
+      hash[customer_id] += 1
+      hash
     end
   end
 end
