@@ -88,11 +88,11 @@ class MerchantRepository
   end
 
   def transactions_for_date(date)
-    invoices_for_date(date).map(&:transactions).flatten
+    invoices_for_date(date).flat_map(&:transactions)
   end
 
   def successful_transactions_for_date(date)
-    transactions_for_date(date).select do |transaction|
+    transactions_for_date(date).select do |transaction| 
       transaction.result == "success"
     end
   end
