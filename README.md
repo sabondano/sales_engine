@@ -16,3 +16,5 @@ In this project I practiced building a system of several interacting Ruby object
 ## Abstract
 
 A data reporting tool that manipulates and reports on merchant transactional data.
+
+The details for the project can be found [here](http://tutorials.jumpstartlab.com/projects/sales_engine.html#base-expectations).
