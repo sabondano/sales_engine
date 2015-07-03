@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/marlabrizel/sales_engine.png?label=ready&title=Ready)](https://waffle.io/marlabrizel/sales_engine)
 # SalesEngine
-In this project you’ll practice building a system of several interacting Ruby objects using TDD.
+In this project I practiced building a system of several interacting Ruby objects using TDD.
 
 ## Project Overview
 
@@ -15,4 +15,4 @@ Use memoization to improve performance
 
 ## Abstract
 
-Let’s write a data reporting tool that manipulates and reports on merchant transactional data.
+A data reporting tool that manipulates and reports on merchant transactional data.
