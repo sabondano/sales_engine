@@ -1,8 +1,18 @@
 [![Stories in Ready](https://badge.waffle.io/marlabrizel/sales_engine.png?label=ready&title=Ready)](https://waffle.io/marlabrizel/sales_engine)
-# Sales Engine
+# SalesEngine
+In this project you’ll practice building a system of several interacting Ruby objects using TDD.
 
-Sales Engine is a relational database built only using Ruby. No metaprogramming, no Structs, no Rails, no databases, nothing fancy.
+## Project Overview
 
-We wish you could actually buy something from it. We'd buy some snacks.
+## Goals
 
-[Link to project outline here](http://tutorials.jumpstartlab.com/projects/sales_engine.html#base-expectations)
+Use tests to drive both the design and implementation of code
+Use test fixtures instead of actual data when testing
+Build a complex system of relationships using multiple interacting classes
+Demonstrate the DRY principle with modules and/or duck typing
+Separate parsing and data loading logic from business logic
+Use memoization to improve performance
+
+## Abstract
+
+Let’s write a data reporting tool that manipulates and reports on merchant transactional data.
